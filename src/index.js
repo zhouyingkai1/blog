@@ -6,7 +6,6 @@ import createLoading from 'dva-loading'
 import { browserHistory } from 'dva/router'
 import { message } from 'antd';
 // 1. Initialize
-// const app = dva();
 const app = dva({
   ...createLoading({
     effects: false,

@@ -1,10 +1,23 @@
 import fetch from 'dva/fetch';
+import 'fetch-detector'
+import 'fetch-ie8'
+import kits from '../utils/kits'
+require('es6-promise').polyfill();
+import pathInterceptor from './pathInterceptor';
+import tokenInterceptor from './tokenInterceptor';
 
 function parseJSON(response) {
-  return response.json();
+  return response.text().then(function(text) {
+    return text ? JSON.parse(text) : {status: 200}
+  })
 }
 
 function checkStatus(response) {
+  if(response.status == 401){
+    kits.setCookies('apg-oa-token', '')
+    kits.setCookies('apg-oa-uid', '')
+    window.location.href = '/login'
+  }
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -12,6 +25,17 @@ function checkStatus(response) {
   const error = new Error(response.statusText);
   error.response = response;
   throw error;
+}
+
+function handleError(error) {
+  if (error.response && error.response.status) {
+    return{
+      code: error.response && error.response.status,
+      msg: error.response && error.response.body || '网络发生异常'
+    };
+  } else {
+    return{code: 504, data: {code: 'timeout', msg: '请求超时'}};
+  }
 }
 
 /**
@@ -22,9 +46,10 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  return fetch(url, options)
+  url  = /http:\\/.test(url) ? url : pathInterceptor.request(url)
+ return fetch(url, tokenInterceptor.request(options))
     .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
+    .then(!~'headHEAD'.indexOf(options.method)&&parseJSON)
+    .then((data) => data)
+    .catch((err) => handleError(err));
 }

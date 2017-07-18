@@ -1,4 +1,5 @@
 import React from 'react';
+import { routerRedux } from 'dva/router'
 import { Router, browserHistory } from 'dva/router';
 
 export default function ({ history, app }) {
@@ -6,18 +7,32 @@ export default function ({ history, app }) {
     {
       name: 'index',
       path: '/',
-      component: require('./routes/IndexPage'),
+      component: require('./routes/index/Index'),
       getIndexRoute(nextState, cb) {
         require.ensure([], require => {
-          app.model(require('./models/example'))
-          cb(null, require('./routes/IndexPage'))
+          app.model(require('./models/homeModel'))
+          cb(null, require('./routes/home/Home'))
         }, 'home')
-      }
+      },
+      childRoutes: [
+        {
+          name: 'home',
+          path: 'home',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/homeModel')),
+              cb(null, require('./routes/home/Home'))
+            }, 'home')
+          }
+        }
+      ]
     }
   ]
   //监听路由变化
   browserHistory.listen(location => {
-    console.log('路由变化')
+    if(location.pathname === '/'){
+      app._store.dispatch(routerRedux.replace('/home'))
+    }
   })
   return (
     <Router history={history} routes={routes}></Router>

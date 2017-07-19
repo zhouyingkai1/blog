@@ -7,7 +7,7 @@ const Header = (props)=> {
       <div className={styles.avatar}><img src={require('../../assets/yay.jpg')} alt=""/></div>  
       <div className={styles.title}>时光流影</div>
       <div className={styles.line}></div>
-      <div className={styles.descript}>时光易逝，唯流影恒寸</div>
+      <div className={styles.descript}>时光易逝，唯流影恒存</div>
       <div className={styles.descript}>不忘初心</div>
     </div>
   )

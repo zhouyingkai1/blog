@@ -24,7 +24,17 @@ export default function ({ history, app }) {
               cb(null, require('./routes/home/Home'))
             }, 'home')
           }
-        }
+        },
+        {
+          name: 'artcle',
+          path: 'artcle',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/artcleModel')),
+              cb(null, require('./routes/artcle/Artcle'))
+            }, 'artcle')
+          }
+        },
       ]
     }
   ]

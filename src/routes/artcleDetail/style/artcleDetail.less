@@ -6,7 +6,7 @@
   overflow: hidden;
   .top{
     position: relative;
-    height: 180px;
+    min-height: 180px;
     .topBg{
       background-color: rgba(0, 127, 255, 0.41);
       top:0;
@@ -33,9 +33,6 @@
       }
       h2{
         margin-top:70px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         a{
           color:#fff;
           font-size:25px;
@@ -159,12 +156,11 @@
             }
           }
           textarea{
-            width:490px;
-            margin-left:10px;
+            width:714px;
+            margin-left:62px;
             resize:none;
             min-height: 70px;
             overflow: hidden;
-            float:right;
             font-size:16px;
           }
           .subBtn{
@@ -350,8 +346,98 @@
       }
     }
   }
-  @media screen and ( max-width: 1366){
-    
+  @media screen and ( max-width: 1366px) {
+    width: 1000px;
+    .main{
+      width: 1000px;
+      .comment{
+        width: 720px;
+        .commentMain{
+          .input{
+            textarea{
+              width: 535px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    width: 900px;
+    .main{
+      width: 900px;
+      .comment{
+        width: 620px;
+        .commentMain{
+          .input{
+            textarea{
+              width: 435px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+    padding: 0 20px;
+    .main{
+      width: 100%;
+      .comment{
+        width: 100%;
+        .commentMain{
+          .input{
+            textarea{
+              width: 435px;
+            }
+          }
+        }
+      }
+    }
+    .aside{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 650px) {
+    padding: 0 10px;
+    margin: 10px 0;
+    .main{
+      .comment{
+        .commentMain{
+          .input{
+            textarea{
+              width: 235px;
+            }
+          }
+        }
+      }
+    }
+    .top{
+      .topMain{
+        h2{
+          margin-top: 25px;
+          a{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 400px) {
+    padding: 0 10px;
+    margin: 10px 0;
+    .main{
+      .comment{
+        .commentMain{
+          .input{
+            textarea{
+              clear:both;
+              width: 145px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 .backTop{

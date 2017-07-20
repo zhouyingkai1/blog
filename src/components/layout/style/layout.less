@@ -107,16 +107,16 @@
         content: '';
         position: absolute;
         bottom: 0px;
-        left: 0;
+        left: 100%;
         width: 0;
-        opacity: 0;
-        transition: all .3s ease;
+        transition: width .3s ease, left .3s ease;
+        border-bottom: 2px solid @primary-color;
       }
       &.act,&:hover{
         &:after{
           width: 100%;
-          opacity: 1;
-          border-bottom: 2px solid @primary-color;
+          left: 0;
+          transition: width .35s ease;
         }
       }
     }

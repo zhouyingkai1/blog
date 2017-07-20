@@ -35,6 +35,16 @@ export default function ({ history, app }) {
             }, 'artcle')
           }
         },
+        {
+          name: 'detail',
+          path: 'detail',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/artcleDetailModel')),
+              cb(null, require('./routes/artcleDetail/ArtcleDetail'))
+            }, 'artcle')
+          }
+        },
       ]
     }
   ]

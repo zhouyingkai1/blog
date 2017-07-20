@@ -7,9 +7,11 @@ import Nav from './layout/Nav'
 import Footer from './layout/Footer'
 // 文章页
 import ArtcleItem from './artcle/ArtcleItem'
+import AsideMenu from './artcle/AsideMenu'
 export default{
   Header,
   Nav,
   Footer,
-  ArtcleItem
+  ArtcleItem,
+  AsideMenu
 }

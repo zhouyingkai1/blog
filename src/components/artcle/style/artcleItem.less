@@ -66,7 +66,7 @@
       }
       &:hover{
         a{
-          color:#007fff;
+          color: @primary-color;
         }
       }
       
@@ -75,6 +75,7 @@
       &.desc{
         color: #666;
         margin-bottom: 10px;
+        padding: 10px 20px;
       }
     }
     .infoBox{
@@ -96,7 +97,6 @@
           }
         } 
         .mess{
-          border-left:0;
           border-top-right-radius: 2px;
           border-bottom-right-radius: 2px;
           padding:0;
@@ -113,43 +113,33 @@
         } 
       }
       .itemRight{
-          float:right;
-          .tags{
+        float:right;
+        .tags{
+          display: inline-block;
+          u{
             display: inline-block;
-            u{
-              display: inline-block;
-              margin: 0 .25em;
-              padding: 0 .8em;
-              height: 25px;
-              letter-spacing: .01em;
-              border-radius: 1px;
+            margin: 0 .25em;
+            padding: 0 .8em;
+            height: 25px;
+            letter-spacing: .01em;
+            border-radius: 1px;
+            background-color: hsla(0,0%,95%,.5);
+            transition: all .3s;
+            color: #999;
+            line-height: 25px;
+            text-decoration: none;
+            &:hover{
+              color: #9f9f9f;
+              border-color: #f1f1f1;
               background-color: hsla(0,0%,95%,.5);
-              transition: all .3s;
-              color: #999;
-              line-height: 25px;
-              text-decoration: none;
-              &:hover{
-                color: #9f9f9f;
-                border-color: #f1f1f1;
-                background-color: hsla(0,0%,95%,.5);
-              }
-            }
-            i{
-              font-size:20px;
-              color:#ddd;
-              position: relative;
-              top:3px;
-              margin-right:5px;
             }
           }
-          .avotar{
-            width: 25px;
-            height: 25px;
-            display: inline-block;
-          img{
-            width:100%;
-            height:100%;
-            vertical-align: middle;
+          i{
+            font-size:20px;
+            color:#ddd;
+            position: relative;
+            top:3px;
+            margin-right:5px;
           }
         }
       }
@@ -161,12 +151,9 @@
   @media screen and (max-width: 1200px) {
   }
   @media screen and (max-width: 950px) {
-    padding-left: 20px;
-    .shortImg{
-      display: none;
-    }
   }
   @media screen and (max-width: 650px) {
+    padding-left: 20px;
     .shortImg{
       display: none;
     }

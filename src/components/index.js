@@ -11,11 +11,18 @@ import AsideMenu from './artcle/AsideMenu'
 
 //项目
 import ProjectItem from './project/ProjectItem'
+//资源
+
+import ResourceSide from './resource/ResourceSide'
+import ResourceMain from './resource/ResourceMain'
+
 export default{
   Header,
   Nav,
   Footer,
   ArtcleItem,
   AsideMenu,
-  ProjectItem
+  ProjectItem,
+  ResourceSide,
+  ResourceMain
 }

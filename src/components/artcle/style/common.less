@@ -7,6 +7,13 @@
     content: '';
     display: table;
   }
+  &:hover{
+    >P{
+      &:after{
+        width: 100%;
+      }
+    }
+  }
   p{
     margin: 25px 20px 0;
     color: @primary-color;
@@ -23,6 +30,7 @@
       height: 1px;
       width: 86px;
       background: @primary-color; 
+      transition: all .25s ease;
     }
     u{
       position: relative;

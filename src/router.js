@@ -55,6 +55,16 @@ export default function ({ history, app }) {
             }, 'artcle')
           }
         },
+        {
+          name: 'resource',
+          path: 'resource',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/resourceModel')),
+              cb(null, require('./routes/resource/Resource'))
+            }, 'artcle')
+          }
+        },
       ]
     }
   ]

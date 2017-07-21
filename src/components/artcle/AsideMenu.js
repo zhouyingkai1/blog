@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './style/aside.less'
-import { Button, Message } from 'antd'
 import Categray from './Categray'
 import TagLists from './TagLists'
 import HotLists from './HotLists'

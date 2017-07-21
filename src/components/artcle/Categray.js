@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './style/common.less'
-import { Button, Message } from 'antd'
 import { categroy } from '../../utils/icons'
 
 const Categray = (props)=> {

@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './style/common.less'
-import { Button, Message } from 'antd'
 import { hot } from '../../utils/icons'
 import { Link } from 'dva/router'
 const HotLists = (props)=> {

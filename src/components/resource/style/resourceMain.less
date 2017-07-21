@@ -1,13 +1,15 @@
 .mainBox{
-  
+  margin-left: -8px;
   .resourceItem{
-    width: 293px;
+    width: 278px;
     background: #fff;
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     transition: all 0.3s ease-in-out;
+    margin-left: 15px;
     cursor: pointer;
+    box-shadow: 1px 1px 4px #c5c5c5;
     &:hover{
       box-shadow: 2px 5px 14px #c5c5c5;
       transform: translate3d(0,-2px,0);
@@ -62,6 +64,12 @@
         white-space: nowrap;
         color: #888;
         font-size: 12px;
+      }
+    }
+    @media screen and (max-width: 610px) {
+      width: 100%;
+      &:last-child{
+        margin-bottom: 0;
       }
     }
   }

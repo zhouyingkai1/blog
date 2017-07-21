@@ -60,7 +60,7 @@ export default{
           }
         ],
         createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
+        img: ''
       },
       {
         id: 4,

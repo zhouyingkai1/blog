@@ -5,9 +5,9 @@ const Nav = (props)=> {
   return(
     <div className={styles.nav}>
       <ul>
-        <li className={location.pathname == '/home'? styles.act: ''}><Link to={{ pathname: '/home'}} >首页</Link></li>
-        <li className={location.pathname == '/artcle' || location.pathname == '/detail'? styles.act: ''}><Link to={{ pathname: '/artcle'}}>博文</Link></li>
-        <li><Link>项目</Link></li>
+        <li className={location.pathname == '/home'? styles.act: ''}><Link to={{ pathname: '/home' }} >首页</Link></li>
+        <li className={location.pathname == '/artcle' || location.pathname == '/detail'? styles.act: ''}><Link to={{ pathname: '/artcle' }}>博文</Link></li>
+        <li className={location.pathname == '/project'? styles.act: ''}><Link to={{ pathname: '/project' }}>项目</Link></li>
         <li><Link>资源</Link></li>
         <li><Link>留言</Link></li>
         <li><Link>友链</Link></li>

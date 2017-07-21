@@ -16,7 +16,14 @@ export default{
       img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
     },
     comment:{
-      data:[]
+      data:[
+        {
+          comment: '测试评论',
+          avator: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
+          userName: 'zyk',
+          createTime: 1488782302,
+        }
+      ],
     },
     aboutLists:[
       {

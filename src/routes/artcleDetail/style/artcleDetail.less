@@ -41,22 +41,19 @@
       .info{
         margin-top:10px;
         user-select: none;
-        a,.like,.report{
+        a{
           display: inline-block;
           margin-right:20px;
           cursor:pointer;
           border-radius:2px;
-        }
-        a{
-          background: #007fff;
+          background: @primary-color;
           color: #fff;
           border-radius: 2px;
           border: none;
           padding: 5px 15px;
           transition: all .3s cubic-bezier(.645,.045,.355,1);
           &:hover{
-            background-color: #49a9ee;
-            border-color: #49a9ee;
+            opacity: .8;
           }
         }
         .report{
@@ -439,16 +436,4 @@
       }
     }
   }
-}
-.backTop{
-  u{
-    svg{
-      transition: all .25s ease;
-    }
-    &:hover{
-      svg{
-        transform: scale(1.2)
-      }
-    }
-  }      
 }

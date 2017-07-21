@@ -45,6 +45,16 @@ export default function ({ history, app }) {
             }, 'artcle')
           }
         },
+        {
+          name: 'project',
+          path: 'project',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/projectModel')),
+              cb(null, require('./routes/project/Project'))
+            }, 'artcle')
+          }
+        },
       ]
     }
   ]

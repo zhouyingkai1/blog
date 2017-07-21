@@ -8,9 +8,9 @@ import { Login } from '../../components'
 import { routerRedux } from 'dva/router'
 import { Icon, Button, Input, Message, Pagination } from 'antd'
 import kits from '../../utils/kits'
-import ScrollToTop from 'react-scroll-up';
 import { Link } from 'dva/router'
-import { backTop } from '../../utils/icons'
+import computerTime from '../../utils/computeTime'
+
 const ArtcleDetail = (props)=>{
   const { artcleDetail, comment, aboutLists } = props.detail
   
@@ -24,11 +24,10 @@ const ArtcleDetail = (props)=>{
           {item.pic?<img src={item.pic} alt=""/>: null}
         </p>
         <h4 className={item.isLike?styles.act:null} onClick={()=>handleLikeCom(item.id)}><Icon type="like" /><b>{item.likeCommentNum}</b></h4>
-        <h2>{returnDate(item.createTime)}发布</h2>
+        <h2>{computerTime(item.createTime)}发布</h2>
       </div> 
     )
   })
-
   const submitComment = ()=>{
     let comment = document.querySelector('#comment');
     if(comment.value){
@@ -93,9 +92,9 @@ const ArtcleDetail = (props)=>{
                 </div>
 
                 <div className={styles.commentBox}>
-                  <h3>{props.detail.comment.total ?props.detail.comment.total + '条评论' : '暂无评论'}</h3>
+                  <h3>{comment.data.length>0 ? comment.data.length + '条评论' : '暂无评论'}</h3>
                   {commentItem}
-                  {props.detail.comment.total < 1?
+                  {comment.data.length != 0 ?
                     null
                     : <i>快来抢沙发吧！</i>
                   }
@@ -133,9 +132,6 @@ const ArtcleDetail = (props)=>{
             </div>
           </div>
         </div>
-        <ScrollToTop showUnder={80} >
-          <div className={styles.backTop}><u dangerouslySetInnerHTML={{__html: backTop('#1cbaa3',90,70)}}></u></div>
-        </ScrollToTop>
       </div>  
     )
 }

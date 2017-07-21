@@ -8,10 +8,14 @@ import Footer from './layout/Footer'
 // 文章页
 import ArtcleItem from './artcle/ArtcleItem'
 import AsideMenu from './artcle/AsideMenu'
+
+//项目
+import ProjectItem from './project/ProjectItem'
 export default{
   Header,
   Nav,
   Footer,
   ArtcleItem,
-  AsideMenu
+  AsideMenu,
+  ProjectItem
 }

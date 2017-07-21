@@ -3,13 +3,13 @@ import { connect } from 'dva'
 import styles from './style/project.less'
 import { ProjectItem } from '../../components'
 const Project = (props)=> {
-  const { projectLists } = props.project
+  const { projectLists, } = props.project
   const itmeProps = {
     dispatch: props.dispatch,
-    projectLists
+    projectLists,
   }
   return(
-    <div>
+    <div className={styles.project}>
       <ProjectItem {...itmeProps}/>
     </div>
   )

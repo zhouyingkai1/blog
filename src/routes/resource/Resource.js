@@ -14,7 +14,7 @@ const Resource = (props)=> {
     dispatch: props.dispatch
   }
   return(
-    <div className={styles.resource}>
+    <div className={styles.resource + ' ' + 'moveIn'}>
       <div className={styles.left}>
         <ResourceMain {...mainProps}/>
       </div>

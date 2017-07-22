@@ -67,7 +67,7 @@ const ArtcleDetail = (props)=>{
     }
     return(
       <div>
-        <div className={styles.detail}>
+        <div className={styles.detail  + ' ' + 'moveIn'}>
           <div className={styles.top}>
             <div className={styles.topBg} style={{backgroundImage:'url('+ artcleDetail.img +')'}}></div>
             <div className={styles.topMain}>

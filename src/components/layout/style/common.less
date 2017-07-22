@@ -1,70 +1,100 @@
 body {
-  background-color: #f1f1f1;
+    background-color: #f1f1f1;
 }
-a:focus{
-  text-decoration: none;
+
+a:focus {
+    text-decoration: none;
 }
 :global{
-  .pagination{
-    margin:20px auto;
-    display: table;
-  }
-  .backTop{
-    u{
-      svg{
-        transition: all .25s ease;
-      }
-      &:hover{
-        svg{
-          transform: scale(1.2)
+  @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(20px);
         }
-      }
-    }      
-  }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    @-webkit-keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+  .moveIn {
+        animation: fadeInRight 1s;
+    }
 }
-// scrollbar
 
+:global {
+    .pagination {
+        margin: 20px auto;
+        display: table;
+    }
+    .backTop {
+        u {
+            svg {
+                transition: all .25s ease;
+            }
+            &:hover {
+                svg {
+                    transform: scale(1.2)
+                }
+            }
+        }
+    }
+    
+    
+}
+
+// scrollbar
 ::-webkit-scrollbar-corner {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar-button {
-  width: 0;
-  height: 0;
-  display: none;
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  width: 2px;
-  background-color: rgba(0,0,0,.2);
-  border-radius: 2px;
+    width: 2px;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 2px;
+    width: 7px;
+    height: 2px;
 }
 
 ::-webkit-scrollbar-track {
-  width: 5px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar:hover {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 :global .ant-breadcrumb {
-  & > span {
-    &:last-child {
-      color: #999;
-      font-weight: normal;
+    &>span {
+        &:last-child {
+            color: #999;
+            font-weight: normal;
+        }
     }
-  }
 }
 
 :global .ant-breadcrumb-link {
-  .anticon + span {
-    margin-left: 4px;
-  }
+    .anticon+span {
+        margin-left: 4px;
+    }
 }
+
 @import "../../styles/skin.less";

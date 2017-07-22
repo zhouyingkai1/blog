@@ -1,10 +1,9 @@
-import React, { component } from 'react'
+import React from 'react'
 import { connect } from 'dva'
 import { Header, Nav, Footer } from '../../components'
 import '../../components/layout/style/common.less'
 import { backTop } from '../../utils/icons'
 import ScrollToTop from 'react-scroll-up';
-
 const Index = (props)=> {
   return(
     <div>

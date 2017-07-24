@@ -54,6 +54,7 @@
         font-size: 13px;
         i{
           font-style: normal;
+          margin-right: 5px;
         }
       }
       .item{
@@ -66,11 +67,16 @@
         font-size: 12px;
       }
     }
-    @media screen and (max-width: 610px) {
+  }
+  @media screen and (max-width: 610px) {
+    width: 100%;
+    &:last-child{
+      margin-bottom: 0;
+    }
+    margin-left: 0;
+    .resourceItem{
       width: 100%;
-      &:last-child{
-        margin-bottom: 0;
-      }
+      margin-left: 0;
     }
   }
 }

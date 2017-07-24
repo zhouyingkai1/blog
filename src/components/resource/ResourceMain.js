@@ -1,8 +1,6 @@
 import React from 'react'
 import styles from './style/resourceMain.less'
-// import 'jquery'
-// import masonry from 'masonry-layout'
-// import '../../lib/imageLoaded'
+import { Icon } from 'antd'
 import Masonry from 'react-masonry-component';
 import computeTime from '../../utils/computeTime'
 class ResourceMain extends React.Component {
@@ -41,6 +39,7 @@ class ResourceMain extends React.Component {
                   <p className={styles.desc}>{item.desc}</p>
                   <div className={styles.itemFooter}>
                     <div className={styles.tags}>
+                      <Icon type='tag-o' />
                       {
                         item.tags.map((tag, i) => {
                           return <i key={i}>{tag.name}</i>

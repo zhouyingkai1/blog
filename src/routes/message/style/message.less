@@ -1,0 +1,131 @@
+.message{
+  animation: fadeInRight .7s;
+  width: 1180px;
+  margin: 20px auto;
+  transition: all .3s ease-out;
+  .top{
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 8px #eaeaea;
+    &:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    h1{
+      font-weight: normal;
+      font-size: 20px;
+      margin-bottom: 15px;
+      i{
+        margin-right: 10px;
+        // color: @primary-color;
+      }
+    }
+    .input{
+      width: 60%;
+      float:left;
+      padding-right: 30px;
+      .button{
+        text-align:center;
+      }
+    }
+    .about{
+      width: 40%;
+      float: left;
+      padding-left: 30px;
+      p{
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .messageList{
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    .messageItem{
+      border-bottom: 1px dashed #cfcfcf;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      &:last-child{
+        border: 0;
+        margin-bottom: 0;
+      }  
+      .info{
+        margin-bottom: 15px;
+        color: #4c4c4c;
+        h1{
+          float: left;
+          width: 40px;
+          height: 40px;
+          img{
+            display: block;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;            
+          }
+        }
+        .right{
+          margin-left: 40px;
+        }
+        h2{
+          height: 21px;
+          overflow: hidden;
+          padding: 0px 15px 0px;
+          font-weight: normal;
+          font-size: 16px;
+        }
+        h3{
+          font-weight: normal;
+          font-size: 12px;
+          padding-left: 16px;
+          color: #999;
+        }
+      }
+      .content{
+        padding: 20px;
+        background: #f5f5f5;
+        margin-top: 15px;  
+        border: 1px solid #efefef;
+        border-radius: 4px;
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    width: 920px;
+  }
+  @media screen and (max-width: 950px) {
+    width: 780px;
+  }
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    padding: 0 10px;
+    margin: 10px 0;
+    .messageList{
+      margin-top: 10px;
+    }
+    .top{
+      .input{
+        width: 100%;
+        padding-right: 0;
+      }
+      .about{
+        width: 100%;
+        padding-left: 0;
+        margin-top: 15px;
+      }
+    }
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}

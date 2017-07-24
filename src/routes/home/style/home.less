@@ -1,0 +1,40 @@
+.home{
+  transition: all .3s ease-out;
+  animation: fadeInRight 2.5s;
+  .canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  .main{
+    color: #fff;
+    text-align: center;
+    h1{
+      font-weight: normal;
+    }
+    .desc{
+      margin: 10px 0;
+    }
+    .link{
+      display: inline-block;
+    
+      a{
+        border: 1px solid #fff;
+        display: inline-block;
+        margin-right: 10px;
+        padding: 4px 10px;
+        color: #fff;
+        border-radius: 4px;
+      }      
+    }
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -5,12 +5,16 @@ import '../../components/layout/style/common.less'
 import { backTop } from '../../utils/icons'
 import ScrollToTop from 'react-scroll-up';
 const Index = (props)=> {
+  const { children } = props
+  if (['/home'].indexOf(location.pathname) > -1) {
+    return <div>{ children }</div>
+  }
   return(
     <div>
       <Header />
       <Nav />
-      <div>
-        {props.children}
+      <div style={{minHeight: '330px'}}>
+        { children }
       </div>
       <Footer/>
       <ScrollToTop showUnder={380} >

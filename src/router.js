@@ -75,6 +75,16 @@ export default function ({ history, app }) {
             }, 'artcle')
           }
         },
+        {
+          name: 'message',
+          path: 'message',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/messageModel')),
+              cb(null, require('./routes/message/Message'))
+            }, 'artcle')
+          }
+        },
       ]
     }
   ]

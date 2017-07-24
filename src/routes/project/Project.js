@@ -9,7 +9,7 @@ const Project = (props)=> {
     projectLists,
   }
   return(
-    <div className={styles.project+ ' ' + 'moveIn'}>
+    <div className={styles.project}>
       <ProjectItem {...itmeProps}/>
     </div>
   )

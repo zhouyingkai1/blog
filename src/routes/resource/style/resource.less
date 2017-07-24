@@ -1,6 +1,7 @@
 .resource{
   width: 1180px;
   transition: all .3s ease-out;
+  animation: fadeInRight 1s;
   &:after{
     content: '';
     clear: both;
@@ -46,5 +47,15 @@
   .right{
     float: right;
     width: 280px;
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0)
   }
 }

@@ -21,7 +21,7 @@ const Artcle = (props)=> {
 
   }
   return(
-    <div className={styles.artcle + ' ' + 'moveIn'}>
+    <div className={styles.artcle}>
       <div className={styles.right}>
         <AsideMenu {...asideProps}/>
       </div>

@@ -5,7 +5,7 @@ import styles from './style/link.less'
 const Link = (props)=> {
   const { } = props.link
   return(
-    <div className={styles.link+ ' ' + 'moveIn'}>
+    <div className={styles.link}>
       link
     </div>
   )

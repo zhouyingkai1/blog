@@ -5,6 +5,7 @@
   border-radius: 4px;
   overflow: hidden;
   transition: all .3s ease-out;
+  animation: fadeInRight 1s;
   .top{
     position: relative;
     min-height: 180px;
@@ -436,5 +437,15 @@
         }
       }
     }
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0)
   }
 }

@@ -14,14 +14,18 @@ class Home extends Component {
   }
   
   drawMoonBg (){
+    // 是否生成月亮
+    let isDrawMoon = true
+    if(window.innerWidth<=414){
+      isDrawMoon = false    
+    }
     let canvas = document.getElementById('canvas'),
       ctx = canvas.getContext('2d'),
       width = window.innerWidth,
       height = window.innerHeight,
-      //实例化月亮和星星。流星是随机时间生成，所以只初始化数组
-      moon = new Moon(ctx, width, height),
+      //实例化月亮和星星。
+      moon = new Moon(ctx, width, height, isDrawMoon),
       stars = new Stars(ctx, width, height, 200),
-      meteors = [],
       count = 0
 
     canvas.width = width
@@ -32,7 +36,6 @@ class Home extends Component {
       //每隔10帧星星闪烁一次，节省计算资源
       count++
       count % 10 == 0 && stars.blink()
-
       moon.draw()
       stars.draw()
       requestAnimationFrame(frame)
@@ -46,8 +49,9 @@ class Home extends Component {
         <canvas id="canvas" className={styles.canvas}></canvas>
         <div className={styles.main}>
           <div className={styles.avatar}></div>
-          <h1 className={styles.name}>周莹凯</h1>
-          <p className={styles.desc}>这是一段很傻的描述</p>
+          <h1 className={styles.name}>zyk</h1>
+          <p className={styles.desc}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat,
+             officia sunt ad esse  error laborum at soluta nesciunt consequatur nostrum officiis!</p>
           <div className={styles.link}>
             <a href='https://github.com/zhouyingkai1' target='_blank'>github</a>
             <Link to={{pathname: '/artcle'}}>进入博客</Link>

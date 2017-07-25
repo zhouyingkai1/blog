@@ -9,7 +9,30 @@ const Mewssage = (props)=> {
   const { messageData, pagination } = props.message
   //评论翻页
   const changePage = (page)=> {
-
+    props.dispatch({
+      type: 'message/getMessageLists',
+      payload: {
+        page: page,
+        pageSize: pagination.pageSize
+      }
+    })
+  }
+  //submitMessage
+  const submitMessage = ()=> {
+    validateFields((err, values) => {
+      if(!!err){
+        return err
+      }
+      console.log(err,'rr')
+      props.dispatch({
+        type: 'message/submitMessage',
+        payload: {
+          nickName: values.nickName,
+          content: values.content
+        }
+      })
+      resetFields()
+    })
   }
   return(
     <div className={styles.message}>
@@ -19,21 +42,21 @@ const Mewssage = (props)=> {
           <Form>
             <FormItem>
               {getFieldDecorator('nickName', {
-                rules: [{ whitespace: true, require: true, message: '请输入昵称'}],
+                rules: [{ whitespace: true, required: true, message: '请输入昵称'}],
               })(<Input addonBefore='昵称' placeholder='请输入昵称'/>)}
             </FormItem>
             <FormItem>
-              {getFieldDecorator('message', {
-                rules: [{ whitespace: true, require: true, message: '请输入留言'}],
+              {getFieldDecorator('content', {
+                rules: [{ whitespace: true, required: true, message: '请输入留言'}],
               })(<Input type='textarea' style={{ resize: 'none'}} autosize={{ minRows: 2, maxRows: 3 }} placeholder='请输入留言'/>)}
             </FormItem>
           </Form>
-          <Button className={styles.button} type='primary'><Icon type="edit" />提交留言</Button>
+          <Button className={styles.button} type='primary' onClick={submitMessage}><Icon type="edit" />提交留言</Button>
         </div>
         <div className={styles.about}>
           <h1><Icon type="user" />关于我</h1>
-          <p>95年双子男，前端开发菜鸟</p>
-          <p><a href="http://www.timeface.cn">时光流影</a>是我第一家公司，这里的小伙伴帮助我很多</p>
+          {/*<p>95年双子男，前端开发菜鸟</p>
+          <p><a href="http://www.timeface.cn">时光流影</a>是我第一家公司，这里的小伙伴帮助我很多</p>*/}
           <p></p>
         </div>
       </div>
@@ -55,7 +78,7 @@ const Mewssage = (props)=> {
             )
           })
         }
-        <Pagination current={pagination.current} onChange={changePage} pageSize={10} total={pagination.total} className='pagination' />
+        <Pagination current={pagination.current} onChange={changePage} pageSize={pagination.pageSize} total={pagination.total} className='pagination' />
       </div>
     </div>
   )

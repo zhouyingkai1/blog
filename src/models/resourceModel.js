@@ -1,3 +1,5 @@
+import * as resourceServices from '../services/resourceServices'
+
 export default{
   namespace: 'resource',
   state: {
@@ -19,109 +21,31 @@ export default{
         name: 'mysql'
       },
     ],
-    resources: [
-      {
-        id: 1,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件,一款很好用的瀑布流插件,一款很好用的瀑布流插件,一款很好用的瀑布流插件,一款很好用的瀑布流插件,一款很好用的瀑布流插件',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
-      },
-      {
-        id: 2,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件一款很好用的瀑布流插件,一款很好用的瀑布流插件,',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
-      },
-      {
-        id: 3,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: ''
-      },
-      {
-        id: 4,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件一款很好用的瀑布流插件,',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
-      },
-      {
-        id: 5,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件一款很好用的瀑布流插件,一款很好用的瀑布流插件,一款很好用的瀑布流插件,',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
-      },
-      {
-        id: 6,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
-      },
-      {
-        id: 7,
-        title: '瀑布流插件Masonry',
-        url: 'https://masonry.desandro.com/',
-        desc: '一款很好用的瀑布流插件',
-        tags: [
-          {
-            id: 1,
-            name: '插件',
-          }
-        ],
-        createTime: '1499844708',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg'
-      },
-    ]
+    resources: []
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        if(location.pathname == '/resource'){
+          dispatch({
+            type: 'getResources'
+          })
+        }
+      })
+    }
   },
   effects: {
-
+    *getResources({ payload }, { call, put }) {
+      const result = yield call(resourceServices.getResources,{page: '1'})
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            resources: result.data
+          }
+        })
+      }
+    }
   },
   reducers: {
     updateState(state,{payload}){

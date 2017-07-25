@@ -36,15 +36,15 @@ class ResourceMain extends React.Component {
                     </div> : null
                   }
                   <h1>{item.title}</h1>
-                  <p className={styles.desc}>{item.desc}</p>
+                  <p className={styles.desc}>{item.resourceDesc}</p>
                   <div className={styles.itemFooter}>
                     <div className={styles.tags}>
                       <Icon type='tag-o' />
-                      {
+                      {/*{
                         item.tags.map((tag, i) => {
                           return <i key={i}>{tag.name}</i>
                         })
-                      }
+                      }*/}
                     </div>
                     <div className={styles.time}>
                       {computeTime(item.createTime)}

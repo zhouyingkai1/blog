@@ -53,7 +53,7 @@ class Home extends Component {
           <p className={styles.desc}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat,
              officia sunt ad esse  error laborum at soluta nesciunt consequatur nostrum officiis!</p>
           <div className={styles.link}>
-            <a href='https://github.com/zhouyingkai1' target='_blank'>github</a>
+            <a href='https://github.com/zhouyingkai1' target='_blank'>关于此站</a>
             <Link to={{pathname: '/artcle'}}>进入博客</Link>
           </div>
         </div>

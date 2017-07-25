@@ -10,7 +10,7 @@ import { Icon, Button, Input, Message, Pagination } from 'antd'
 import kits from '../../utils/kits'
 import { Link } from 'dva/router'
 import computerTime from '../../utils/computeTime'
-
+// import './style/mackdown.css'
 const ArtcleDetail = (props)=>{
   const { artcleDetail, comment, aboutLists } = props.detail
   

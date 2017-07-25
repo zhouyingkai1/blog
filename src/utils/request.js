@@ -13,11 +13,6 @@ function parseJSON(response) {
 }
 
 function checkStatus(response) {
-  if(response.status == 401){
-    kits.setCookies('apg-oa-token', '')
-    kits.setCookies('apg-oa-uid', '')
-    window.location.href = '/login'
-  }
   if (response.status >= 200 && response.status < 300) {
     return response;
   }

@@ -11,6 +11,9 @@ class TagLists extends React.Component{
     }
   }
   componentDidMount(){
+    this.drawTags()
+  }
+  drawTags() {
     try {
       var i, et = document.getElementById('tags').childNodes;
       for (i in et) {
@@ -36,6 +39,9 @@ class TagLists extends React.Component{
     } catch (e) {
         
     }
+  }
+  componentWillUpdate(a) {
+    this.drawTags()
   }
   render() {
     const tagLists = this.props.tagLists || []

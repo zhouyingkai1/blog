@@ -21,7 +21,7 @@ const Link = (props)=> {
               <div key={item.id} className={styles.item}>
                 <a href={item.url} target='_blank'>
                   <h3 title={item.name}><img src={item.avatar} alt=""/>{item.name}</h3>
-                  <p>{item.desc}</p>
+                  <p>{item.linkdesc}</p>
                 </a>
               </div>
             )

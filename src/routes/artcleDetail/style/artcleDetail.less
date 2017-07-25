@@ -403,9 +403,11 @@
     .main{
       .comment{
         .commentMain{
+          padding: 10px;
           .input{
+            margin-right: 0;
             textarea{
-              width: 235px;
+              width: 275px;
             }
           }
         }
@@ -422,7 +424,7 @@
       }
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 414px) {
     padding: 0 10px;
     margin: 10px 0;
     .main{
@@ -431,7 +433,23 @@
           .input{
             textarea{
               clear:both;
-              width: 145px;
+              width: 270px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 375px) {
+    padding: 0 10px;
+    margin: 10px 0;
+    .main{
+      .comment{
+        .commentMain{
+          .input{
+            textarea{
+              clear:both;
+              width: 231px;
             }
           }
         }

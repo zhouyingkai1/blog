@@ -41,11 +41,11 @@ const ProjectItem = (props)=> {
         projectLists.map(( item, index ) => {
           return (
             <div key={index} className={styles.projectItem} onClick={()=> openModal(item)}>
-              <div className={styles.lookNum}><u dangerouslySetInnerHTML={{__html: look('#1cbaa3',19,18)}}></u><i>36</i></div>
+              <div className={styles.lookNum}><u dangerouslySetInnerHTML={{__html: look('#1cbaa3',19,18)}}></u><i>{item.see}</i></div>
               <div className={styles.img} style={{ backgroundImage: 'url(' + item.img + ') ' }}></div>
               <div className={styles.desc}>
                 <h1>{ item.title }</h1>
-                <p>{ item.desc }</p>
+                <p>{ item.projectDesc }</p>
               </div>
             </div>
           )

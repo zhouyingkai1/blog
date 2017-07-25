@@ -1,3 +1,4 @@
+import * as artcleServices from '../services/artcleServices'
 export default{
   namespace: 'artcle',
   state: {
@@ -109,34 +110,31 @@ export default{
         title: '测试一下标题',
       }
     ],
-    tagLists: [
-      {
-        id: 1,
-        name: 'javascript'
-      },
-      {
-        id: 2,
-        name: 'php'
-      },
-      {
-        id: 3,
-        name: 'react'
-      },
-      {
-        id: 4,
-        name: 'mysql'
-      },
-    ],
+    tagLists: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        
+        if(location.pathname == '/artcle'){
+          dispatch({
+            type: 'getArtcleTags'
+          })
+        }
       })
     }
   },
   effects: {
-
+    *getArtcleTags({ payload }, { call, put }) {
+      const result = yield call(artcleServices.getArtcleTags,{page: '1'})
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            tagLists: result.data
+          }
+        })
+      }
+    }
   },
   reducers: {
     updateState(state,{payload}){

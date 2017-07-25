@@ -1,48 +1,32 @@
+import * as linkServices from '../services/linkServices'
 export default{
   namespace: 'link',
   state: {
-    linkLists: [
-      {
-        id: 1,
-        name: '小东西',
-        avatar: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        desc: '一句话介绍一下',
-        url: 'http://timeface.cn'
-      },
-      {
-        id: 2,
-        name: '小东西',
-        avatar: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        desc: '一句话介绍一下'
-      },
-      {
-        id: 3,
-        name: '小东西',
-        avatar: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        desc: '一句话介绍一下'
-      },
-      {
-        id: 4,
-        name: '小东西',
-        avatar: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        desc: '一句话介绍一下'
-      },
-      {
-        id: 5,
-        name: '小东西',
-        avatar: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        desc: '一句话介绍一下'
-      },
-      {
-        id: 6,
-        name: '小东西',
-        avatar: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        desc: '一句话介绍一下'
-      },
-    ]
+    linkLists: []
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        if(location.pathname == '/link'){
+          dispatch({
+            type: 'getArtcleTags'
+          })
+        }
+      })
+    }
   },
   effects: {
-
+    *getArtcleTags({ payload }, { call, put }) {
+      const result = yield call(linkServices.getLinkLists,{page: '1'})
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            linkLists: result.data
+          }
+        })
+      }
+    }
   },
   reducers: {
     updateState(state,{payload}){

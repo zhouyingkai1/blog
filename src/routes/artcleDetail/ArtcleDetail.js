@@ -10,6 +10,7 @@ import { Icon, Button, Input, Message, Pagination } from 'antd'
 import kits from '../../utils/kits'
 import { Link } from 'dva/router'
 import computerTime from '../../utils/computeTime'
+import { ArtcleMarkdown } from '../../components'
 // import './style/mackdown.css'
 const ArtcleDetail = (props)=>{
   const { artcleDetail, comment, aboutLists } = props.detail
@@ -79,7 +80,12 @@ const ArtcleDetail = (props)=>{
           </div>
           {/*主体*/}
           <div className={styles.main}>
+            
             <div className={styles.comment}>
+              <div className={styles.markdown}>
+                <ArtcleMarkdown />
+              </div>
+              
               <div className={styles.commentMain}>
                 <div className={styles.input}>
                   <div className={styles.position} id='comment' ></div>

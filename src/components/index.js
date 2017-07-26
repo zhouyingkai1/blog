@@ -15,6 +15,8 @@ import ProjectItem from './project/ProjectItem'
 
 import ResourceSide from './resource/ResourceSide'
 import ResourceMain from './resource/ResourceMain'
+// 文章 markdown
+import ArtcleMarkdown from './artcleDetail/ArtcleMarkdown'
 
 export default{
   Header,
@@ -24,5 +26,6 @@ export default{
   AsideMenu,
   ProjectItem,
   ResourceSide,
-  ResourceMain
+  ResourceMain,
+  ArtcleMarkdown
 }

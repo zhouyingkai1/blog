@@ -16,6 +16,7 @@ const Mewssage = (props)=> {
         pageSize: pagination.pageSize
       }
     })
+    scrollTo(0,275)
   }
   //submitMessage
   const submitMessage = ()=> {
@@ -23,7 +24,6 @@ const Mewssage = (props)=> {
       if(!!err){
         return err
       }
-      console.log(err,'rr')
       props.dispatch({
         type: 'message/submitMessage',
         payload: {

@@ -2,23 +2,35 @@ import React, { Component } from 'react'
 import { connect } from 'dva'
 import styles from './style/artcle.less'
 import { ArtcleItem, AsideMenu } from '../../components'
-import { Message, Pagination } from 'antd';
+import { Message, Pagination, Spin } from 'antd';
 
 const Artcle = (props)=> {
-  const { artcleList, tagLists, hotLists, pagination } = props.artcle
+  const { artcleList, tagLists, hotLists, pagination, categroy, tagName, sideCategroy, isLoading } = props.artcle
   const { dispatch } = props
   const artcleItemProps = {
     artcleList,
-    dispatch
+    dispatch,
   }
   const asideProps = {
     dispatch,
     tagLists,
-    hotLists
+    hotLists,
+    categroy,
+    sideCategroy, 
+    tagName 
   }
   //换页
   const changePage = (page)=>{
-
+    dispatch({
+      type: 'artcle/getArtcleLists',
+      payload: {
+        page: page,
+        pageSize: pagination.pageSize,
+        categroy: categroy,
+        tagName: tagName
+      }
+    })
+    scrollTo(0,0)
   }
   return(
     <div className={styles.artcle}>
@@ -26,9 +38,20 @@ const Artcle = (props)=> {
         <AsideMenu {...asideProps}/>
       </div>
       <div className={styles.left}>
-        <ArtcleItem {...artcleItemProps} />
+        {
+          artcleList.length>0?
+            <div>
+              <Spin spinning={isLoading} delay={0} >
+                <ArtcleItem {...artcleItemProps} />
+                <Pagination current={pagination.current} onChange={changePage} pageSize={pagination.pageSize} total={pagination.total} className='pagination' />
+              </Spin>
+            </div>
+            :
+            <div className={styles.empty}>
+              暂无相关文章
+            </div>
+        }
       </div>
-      <Pagination current={pagination.current} onChange={changePage} pageSize={10} total={pagination.total} className='pagination' />
     </div>
   )
 }

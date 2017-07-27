@@ -4,7 +4,7 @@ import { Link, routerRedux } from 'dva/router'
 import styles from './style/artcleItem.less'
 import kits from '../../utils/kits'
 import computeTime from '../../utils/computeTime'
-const ArtcleItem = ({ dispatch, artcleList, }) => {
+const ArtcleItem = ({ dispatch, artcleList,  }) => {
   const item = artcleList.map((item, index) => {
     const goDetail = (event, id) => {
       dispatch(
@@ -22,7 +22,7 @@ const ArtcleItem = ({ dispatch, artcleList, }) => {
         <Link to={{pathname: '/detail', query: { id: item.id}}} style={{ display: 'block', position: 'relative', zIndex: '3', height: '100%' }}></Link>
         </div>
         <div className={styles.itemMain} id={'div' + index} >
-          <h2><Link to={{pathname: '/detail', query: { id: item.id}}}>{item.title}</Link></h2>
+          <h2 title={item.title}><Link to={{pathname: '/detail', query: { id: item.id}}}>{item.title}</Link></h2>
           <p onClick={(event) => goDetail(event, item.id)} className={styles.desc}>{item.artcleDesc}</p>
           <div className={styles.time}>{ computeTime(item.createTime) }发布</div>
           <div className={styles.infoBox}>
@@ -37,11 +37,7 @@ const ArtcleItem = ({ dispatch, artcleList, }) => {
             <div className={styles.itemRight}>
               <div className={styles.tags}>
                 <Icon type="tags-o" />
-                {item.tags.map((tag, index) => {
-                  return (
-                    <u key={index}>{tag.title}</u>
-                  )
-                })}
+                <u key={index}>{item.tag}</u>
               </div>
             </div>
           </div>

@@ -14,16 +14,23 @@ class TagLists extends React.Component{
     this.drawTags()
   }
   drawTags() {
+    let _this = this
     try {
       var i, et = document.getElementById('tags').childNodes;
       for (i in et) {
           et[i].nodeName == 'A' && et[i].addEventListener('click', function(e) {
               e.preventDefault();
-              console.log(e.target.innerText, 'eee')
-          });
-          et[i].nodeName == 'A' && et[i].addEventListener('mouseover', function(e) {
-              e.preventDefault();
-              console.log(e.target.innerText, 'eee')
+              const tag = e.target.innerText
+              _this.props.dispatch({
+                type: 'artcle/getArtcleLists',
+                payload: {
+                  page: 1,
+                  pageSize: 10,
+                  categroy: _this.props.categroy,
+                  tagName: tag
+                }
+              })
+              scrollTo(0,0)
           });
       }
       TagCanvas.Start('myCanvas', 'tags', {

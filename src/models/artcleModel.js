@@ -2,122 +2,51 @@ import * as artcleServices from '../services/artcleServices'
 export default{
   namespace: 'artcle',
   state: {
-    artcleList:[
-      {
-        artcleDesc: '周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动',
-        comment: '10',
-        createTime: '1499844708',
-        id: '26',
-        img: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        isLike: false,
-        items: 1,
-        like: 3,
-        point: 14,
-        status: 1,
-        tags: [
-          {
-            id: 1,
-            title: 'javascript',
-            url: 'js'
-          },
-          {
-            id: 2,
-            title: 'php',
-            url: 'php'
-          }
-        ],
-        title: '测试一下标题',
-      },
-      {
-        artcleDesc: '周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动',
-        comment: '10',
-        createTime: '1499844708',
-        id: '28',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
-        isLike: false,
-        items: 1,
-        like: 3,
-        point: 14,
-        status: 1,
-        tags: [
-          {
-            id: 1,
-            title: 'javascript',
-            url: 'js'
-          },
-          {
-            id: 2,
-            title: 'php',
-            url: 'php'
-          },
-        ],
-        title: '测试一下标题',
-      }
-    ],
+    artcleList:[],
     pagination: {
       current: 1,
-      total: 10,
+      total: 1,
+      pageSize: 10
     },
-    hotLists: [
+    categroy: 0,
+    tagName: '',
+    isLoading: true,
+    hotLists: [],
+    tagLists: [],
+    sideCategroy: [
       {
-        artcleDesc: '周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动',
-        comment: '10',
-        createTime: '1499844708',
-        id: '26',
-        img: 'http://static.timeface.cn/times/2d3248f3b4380e922db426ef78cdfca1.jpg',
-        isLike: false,
-        items: 1,
-        like: 3,
-        point: 14,
-        status: 1,
-        tags: [
-          {
-            id: 1,
-            title: 'javascript',
-            url: 'js'
-          },
-          {
-            id: 2,
-            title: 'php',
-            url: 'php'
-          }
-        ],
-        title: '移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动',
+        id: 0,
+        name: '全部分类'
       },
       {
-        artcleDesc: '周jQuery更新到了3.2.0，移除了很多过时的API，网路上也发起了《You dont need jQuery》 活动',
-        comment: '10',
-        createTime: '1499844708',
-        id: '28',
-        img: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
-        isLike: false,
-        items: 1,
-        like: 3,
-        point: 14,
-        status: 1,
-        tags: [
-          {
-            id: 1,
-            title: 'javascript',
-            url: 'js'
-          },
-          {
-            id: 2,
-            title: 'php',
-            url: 'php'
-          },
-        ],
-        title: '测试一下标题',
-      }
+        id: 1,
+        name: '前端相关'
+      },
+      {
+        id: 2,
+        name: '心情随笔'
+      },
+
     ],
-    tagLists: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
         if(location.pathname == '/artcle'){
+          // dispatch({
+          //   type: 'getArtcleTags'
+          // })
           dispatch({
-            type: 'getArtcleTags'
+            type: 'getHotArtcle'
+          })
+          dispatch({
+            type: 'getArtcleLists',
+            payload: {
+              page: 1,
+              pageSize: 10,
+              tagName: '',
+              categroy: 0
+            }
           })
         }
       })
@@ -130,11 +59,41 @@ export default{
         yield put({
           type: 'updateState',
           payload: {
-            tagLists: result.data
+            tagLists: result.data,
           }
         })
       }
-    }
+    },
+    *getHotArtcle({ payload }, { call, put }) {
+      const result = yield call(artcleServices.getHotArtcle,{})
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            hotLists: result.data,
+          }
+        })
+      }
+    },
+    *getArtcleLists({ payload }, { call, put }) {
+      const result = yield call(artcleServices.getArtcleLists,payload)
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            artcleList: result.data,
+            pagination: {
+              current: payload.page,
+              total: Number(result.total),
+              pageSize: payload.pageSize
+            },
+            tagName: payload.tagName,
+            categroy: payload.categroy,
+            isLoading: false
+          }
+        })
+      }
+    },
   },
   reducers: {
     updateState(state,{payload}){

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './style/layout.less'
 import { Link } from 'dva/router'
+import { Icon } from 'antd'
 const Footer = (props)=> {
   return(
     <div className={styles.footer}>
@@ -13,10 +14,11 @@ const Footer = (props)=> {
           <li className={styles.link}>
             <p>相关链接</p>
             <ul>
-              <li><Link>博文</Link></li>
-              <li><Link>项目</Link></li>
-              <li><Link>资源</Link></li>
-              <li><Link>留言</Link></li>
+              <li><Link to={{ pathname: '/artcle' }}><Icon type="edit" />博文</Link></li>
+              <li><Link to={{ pathname: '/resource' }}><Icon type="like-o" />资源</Link></li>
+              <li><Link to={{ pathname: '/message' }}><Icon type="message" />留言</Link></li>
+              <li><Link to={{ pathname: '/project' }}><Icon type="heart-o" />项目</Link></li>
+              <li><Link to={{ pathname: '/link' }}><Icon type="link" />友链</Link></li>
             </ul>
           </li>
           <li className={styles.about}>

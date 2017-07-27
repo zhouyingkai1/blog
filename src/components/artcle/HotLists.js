@@ -11,7 +11,7 @@ const HotLists = (props)=> {
         <ul>
           {
             hotLists.map((item,index)=> {
-              return <li key={index}><Link title={item.title}>{item.title}</Link></li> 
+              return <li key={index}><Link to={{pathname: '/detail', query: {id: item.id}}} title={item.title}>{item.title}</Link></li> 
             })
           }
         </ul>

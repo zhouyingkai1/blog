@@ -4,7 +4,21 @@ import { Header, Nav, Footer } from '../../components'
 import '../../components/layout/style/common.less'
 import { backTop } from '../../utils/icons'
 import ScrollToTop from 'react-scroll-up';
+import NProgress from 'nprogress'
+
+let lastHref
 const Index = (props)=> {
+  const href = window.location.href
+  if (lastHref !== href) {
+    NProgress.start()
+    if (!props.loading.global) {
+      NProgress.done()
+      lastHref = href
+    }
+    scrollTo(0,0)
+  }
+
+
   const { children } = props
   if (['/home'].indexOf(location.pathname) > -1) {
     return <div>{ children }</div>

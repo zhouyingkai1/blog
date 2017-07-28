@@ -5,7 +5,7 @@ import '../../components/layout/style/common.less'
 import { backTop } from '../../utils/icons'
 import ScrollToTop from 'react-scroll-up';
 import NProgress from 'nprogress'
-import 'vconsole'
+// import 'vconsole'
 let lastHref
 const Index = (props)=> {
   const href = window.location.href

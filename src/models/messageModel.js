@@ -8,7 +8,14 @@ export default{
       total: 1,
       pageSize: 10
     },
-    messageData: []
+    messageData: [],
+    avatarList: [
+      'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
+      'http://img1.timeface.cn/album/avator/e9912620fd56e48fb37695145c9e82d7.jpg',
+      'http://img1.timeface.cn/avatar/c17bcaa3eda6ad86afa9bd089c54826d.jpg',
+      'http://img1.timeface.cn/uploads/avator/41750ee13848062e0fc54ecaab062e43.png',
+      'http://img1.timeface.cn/uploads/avator/default.png',
+    ],
   },
   subscriptions: {
     setup({ dispatch, history }) {

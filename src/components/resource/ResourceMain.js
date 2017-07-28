@@ -40,11 +40,7 @@ class ResourceMain extends React.Component {
                   <div className={styles.itemFooter}>
                     <div className={styles.tags}>
                       <Icon type='tag-o' />
-                      {/*{
-                        item.tags.map((tag, i) => {
-                          return <i key={i}>{tag.name}</i>
-                        })
-                      }*/}
+                      <i >{item.tag}</i>
                     </div>
                     <div className={styles.time}>
                       {computeTime(item.createTime)}

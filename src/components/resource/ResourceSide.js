@@ -4,7 +4,15 @@ import { Button, Message, Icon } from 'antd'
 import { tag } from '../../utils/icons'
 
 const ResourceSide = (props)=> {
-  const { tagLists, dispatch } = props
+  const { tagLists, dispatch, queryTag } = props
+  const getResources = (tagName)=> {
+    props.dispatch({
+      type: 'resource/getResources',
+      payload: {
+        queryTag: tagName
+      }
+    })
+  }
   return(
     <div className={styles.aside}>
       <div className={styles.desc}>
@@ -21,9 +29,10 @@ const ResourceSide = (props)=> {
         <p><u dangerouslySetInnerHTML={{__html: tag('#1cbaa3',19,18)}}></u>标签列表</p>
         <div className={styles.tag}>
           <ul>
+            <li className={!queryTag?styles.act:''} onClick={()=>getResources('')}>全部</li>
             {
               tagLists.map((item,index)=> {
-                return <li key={index}>{item.name}</li> 
+                return <li key={index} className={item.name == queryTag?styles.act:''} onClick={()=>getResources(item.name)}>{item.name}</li> 
               })
             }
           </ul>

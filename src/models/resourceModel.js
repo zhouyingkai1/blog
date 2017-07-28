@@ -3,32 +3,23 @@ import * as resourceServices from '../services/resourceServices'
 export default{
   namespace: 'resource',
   state: {
-    tagLists: [
-      {
-        id: 1,
-        name: 'javascript'
-      },
-      {
-        id: 2,
-        name: 'php'
-      },
-      {
-        id: 3,
-        name: 'react'
-      },
-      {
-        id: 4,
-        name: 'mysql'
-      },
-    ],
-    resources: []
+    tagLists: [],
+    resources: [],
+    queryTag: '',
+    isLoading: true
   },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
         if(location.pathname == '/resource'){
           dispatch({
-            type: 'getResources'
+            type: 'getResources',
+            payload: {
+              queryTag: ''
+            }
+          })
+          dispatch({
+            type: 'getResourceTags'
           })
         }
       })
@@ -36,16 +27,29 @@ export default{
   },
   effects: {
     *getResources({ payload }, { call, put }) {
-      const result = yield call(resourceServices.getResources,{page: '1'})
+      const result = yield call(resourceServices.getResources,{queryTag: payload.queryTag})
       if(result.code === '000'){
         yield put({
           type: 'updateState',
           payload: {
-            resources: result.data
+            resources: result.data,
+            queryTag: payload.queryTag,
+            isLoading: false
           }
         })
       }
-    }
+    },
+    *getResourceTags({ payload }, { call, put }) {
+      const result = yield call(resourceServices.getResourceTags,{})
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            tagLists: result.data
+          }
+        })
+      }
+    },
   },
   reducers: {
     updateState(state,{payload}){

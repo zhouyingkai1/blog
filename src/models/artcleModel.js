@@ -76,6 +76,12 @@ export default{
       }
     },
     *getArtcleLists({ payload }, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          isLoading: true,
+        }
+      })
       const result = yield call(artcleServices.getArtcleLists,payload)
       if(result.code === '000'){
         yield put({

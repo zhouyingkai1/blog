@@ -42,7 +42,7 @@ export default function ({ history, app }) {
             require.ensure([], require => {
               app.model(require('./models/artcleDetailModel')),
               cb(null, require('./routes/artcleDetail/ArtcleDetail'))
-            }, 'artcle')
+            }, 'detail')
           }
         },
         {
@@ -52,7 +52,7 @@ export default function ({ history, app }) {
             require.ensure([], require => {
               app.model(require('./models/projectModel')),
               cb(null, require('./routes/project/Project'))
-            }, 'artcle')
+            }, 'project')
           }
         },
         {
@@ -62,7 +62,7 @@ export default function ({ history, app }) {
             require.ensure([], require => {
               app.model(require('./models/resourceModel')),
               cb(null, require('./routes/resource/Resource'))
-            }, 'artcle')
+            }, 'resource')
           }
         },
         {
@@ -72,7 +72,7 @@ export default function ({ history, app }) {
             require.ensure([], require => {
               app.model(require('./models/linkModel')),
               cb(null, require('./routes/link/Link'))
-            }, 'artcle')
+            }, 'link')
           }
         },
         {
@@ -82,7 +82,17 @@ export default function ({ history, app }) {
             require.ensure([], require => {
               app.model(require('./models/messageModel')),
               cb(null, require('./routes/message/Message'))
-            }, 'artcle')
+            }, 'message')
+          }
+        },
+        {
+          name: 'about',
+          path: 'about',
+          getComponent({},cb){
+            require.ensure([], require => {
+              app.model(require('./models/aboutModel')),
+              cb(null, require('./routes/about/About'))
+            }, 'about')
           }
         },
       ]
@@ -91,7 +101,7 @@ export default function ({ history, app }) {
   //监听路由变化
   browserHistory.listen(location => {
     if(location.pathname === '/'){
-      app._store.dispatch(routerRedux.replace('/home'))
+      app._store.dispatch(routerRedux.replace('/artcle'))
     }
   })
   return (

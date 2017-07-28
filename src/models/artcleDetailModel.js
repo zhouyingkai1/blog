@@ -4,22 +4,13 @@ export default {
   namespace: 'detail',
   state: {
     artcleDetail: {},
-    comment: {
-      data: [
-        {
-          comment: '测试评论',
-          avator: 'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
-          userName: 'zyk',
-          createTime: 1488782302,
-        }
-      ],
+    comment: [],
+    pagination: {
+      current: 1,
+      total: 0,
+      pageSize: 10
     },
-    aboutLists: [
-      {
-        title: '相关链接',
-        id: 2,
-      },
-    ],
+    aboutLists: [],
     avatarList: [
       'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
       'http://img1.timeface.cn/album/avator/e9912620fd56e48fb37695145c9e82d7.jpg',
@@ -33,16 +24,25 @@ export default {
     setup({ dispatch, history }) {
       history.listen(location => {
         if (location.pathname == '/detail') {
+          const artcleId = location.query.id
           dispatch({
             type: 'getArtcleDetail',
             payload: {
-              id: location.query.id
+              id: artcleId
             }
           })
           dispatch({
             type: 'updateState',
             payload: {
-              artcleId: location.query.id
+              artcleId: artcleId
+            }
+          })
+          dispatch({
+            type: 'getArtcleComment',
+            payload: {
+              artcleId: artcleId,
+              page: 1,
+              pageSize: 10
             }
           })
         }
@@ -61,14 +61,60 @@ export default {
             artcleDetail: result.data
           }
         })
+        yield put({
+          type: 'getHotAbout',
+          payload: {
+            queryTag: result.data&&result.data.tag,
+            artcleId: payload.id
+          }
+        })
       }else{
         Message.error('文章不存在')  
       }
     },
-    *submitComment({ payload }, { call, put }) {
+    *submitComment({ payload }, { call, put, select }) {
       const result = yield call(artcleDetailServices.submitComment, payload)
+      const pagination = yield select(state=>state.detail.pagination)
       if (result.code === '000') {
-        
+        yield put({
+          type: 'getArtcleComment',
+          payload: {
+            page: pagination.current,
+            pageSize: pagination.pageSize,
+            artcleId: payload.artcleId
+          }
+        })
+      }
+    },
+    *getHotAbout({ payload }, { call, put, select }) {
+      const result = yield call(artcleDetailServices.getHotAbout, payload)
+      if (result.code === '000') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            aboutLists: result.data,
+          }
+        })
+      }
+    },
+    *getArtcleComment({ payload }, { call, put }) {
+      const result = yield call(artcleDetailServices.getArtcleComment, {
+        page: payload.page,
+        pageSize: payload.pageSize,
+        artcleId: payload.artcleId
+      })
+      if (result.code === '000') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            comment: result.data,
+            pagination: {
+              current: payload.page,
+              pageSize: payload.pageSize,
+              total: Number(result.total)
+            }
+          }
+        })
       }
     },
   },

@@ -13,18 +13,17 @@ import computerTime from '../../utils/computeTime'
 import { ArtcleMarkdown } from '../../components'
 // import './style/mackdown.css'
 const ArtcleDetail = (props) => {
-  const { artcleDetail, comment, aboutLists, artcleId, avatarList } = props.detail
+  const { artcleDetail, comment, aboutLists, artcleId, avatarList, pagination } = props.detail
 
   //循环评论列表
-  const commentItem = comment.data.map((item, index) => {
+  const commentItem = comment.map((item, index) => {
     return (
       <div key={index} className={styles.commentItem}>
-        <h1><a href={'/#/user/' + item.userId} target="_blank"><img src={item.avator} alt="" />{item.userName}</a></h1>
+        <h5><img src={item.avatar} alt="" />{index + 1}楼</h5>
         {/*<p className={style.txt} dangerouslySetInnerHTML={{__html: props.detail.comment && props.detail.comment.}}></p>*/}
         <p className={styles.txt}>{item.comment}
           {item.pic ? <img src={item.pic} alt="" /> : null}
         </p>
-        <h4 className={item.isLike ? styles.act : null} onClick={() => handleLikeCom(item.id)}><Icon type="like" /><b>{item.likeCommentNum}</b></h4>
         <h2>{computerTime(item.createTime)}发布</h2>
       </div>
     )
@@ -46,8 +45,8 @@ const ArtcleDetail = (props) => {
   }
     // 分享
     const handleShare = (type) => {
-      // const thisUrl = location.href
-      const thisUrl = 'timeface.cn/event'
+      const thisUrl = location.href
+      // const thisUrl = 'timeface.cn/event'
       let url
       if (type == 0) {
         url = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(thisUrl + '?title=' + artcleDetail.title) + '&pics=' + artcleDetail.img;
@@ -55,6 +54,17 @@ const ArtcleDetail = (props) => {
         url = 'http://v.t.sina.com.cn/share/share.php?appkey=2889481671&title=' + encodeURIComponent(thisUrl + '?title=' + artcleDetail.title) + '&pic=' + artcleDetail.img
       }
       window.open(url)
+    }
+    // 评论换页
+    const changePage = (page)=> {
+      props.dispatch({
+        type: 'detail/getArtcleComment',
+        payload: {
+          page: page,
+          pageSize: pagination.pageSize,
+          artcleId: artcleId
+        }
+      })
     }
     return (
       <div>
@@ -82,16 +92,16 @@ const ArtcleDetail = (props) => {
                   <p><img src={'http://gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg'} alt="" /></p>
                   <Input type="textarea" id='commentInput' placeholder='say what are you want to say' autosize={true} />
                   <div className={styles.subBtn} >
-                    <i>知道你有很多想说</i>
+                    {/*<i>知道你有很多想说</i>*/}
                     <Button size='large' onClick={() => submitComment()} type='primary'>评论</Button>
                   </div>
                 </div>
 
                 <div className={styles.commentBox}>
-                  <h3>{comment.data.length > 0 ? comment.data.length + '条评论' : '暂无评论'}</h3>
+                  <h3>{pagination.total > 0 ? pagination.total + '条评论' : '暂无评论'}</h3>
                   {commentItem}
-                  {comment.data.length != 0 ?
-                    null
+                  {pagination.total != 0 ?
+                    <Pagination current={pagination.current} onChange={changePage} pageSize={pagination.pageSize} total={pagination.total} className='pagination' />
                     : <i>快来抢沙发吧！</i>
                   }
                 </div>
@@ -112,6 +122,7 @@ const ArtcleDetail = (props) => {
                     )
                   })
                 }*/}
+                <h2>{artcleDetail.tag}</h2>
               </div>
               <div className={styles.aboutArtcle}>
                 <p>热门相关</p>

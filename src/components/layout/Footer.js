@@ -9,7 +9,7 @@ const Footer = (props)=> {
         <ul>
           <li>
             <p>建站初衷</p>
-            <p>此站是我成长路上的一个缩影，也希望借此结交更多前辈好友。分享我在前端学习路上的点点滴滴，愿与你共同分享，一起进步！</p>
+            <p>此站旨在记录我成长过程，分享我在前端学习路上的点点滴滴，也希望借此结交更多前辈好友,愿与你共同分享，一起进步！</p>
           </li>
           <li className={styles.link}>
             <p>相关链接</p>
@@ -24,13 +24,17 @@ const Footer = (props)=> {
           <li className={styles.about}>
             <p>关于我</p>
             <ul>
-              <li></li>
+              <li><a href="http://github.com/zhouyingkai1" target='_blank'><Icon type='github'/></a></li>
             </ul>
+            <div className={styles.linkAbout}>
+              <Link to={{ pathname: '/about' }}>关于此站</Link>
+              {/*<Link to={{ pathname: '/link' }}>关于此站</Link>*/}
+            </div>
           </li>
         </ul>
         <div className={styles.desc}>
-          <p>design + code by @周莹凯,base on React + PHP + MySQL + Ant Design</p>
-          <p>© 2012-2017。感谢 <a href="http://www.timeface.cn" target='_blank'>时光流影 </a>小伙伴的帮助</p>
+          <p>design + code by @周莹凯,React + PHP + MySQL + Ant Design</p>
+          <p>感谢 <a href="http://www.timeface.cn" target='_blank'>时光流影 </a>小伙伴的帮助</p>
         </div>
       </div>
     </div>

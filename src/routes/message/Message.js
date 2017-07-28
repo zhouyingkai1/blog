@@ -6,7 +6,7 @@ import computeTime from '../../utils/computeTime'
 const FormItem = Form.Item;
 const Mewssage = (props)=> {
   const { getFieldDecorator, validateFields, resetFields} = props.form
-  const { messageData, pagination } = props.message
+  const { messageData, pagination, avatarList } = props.message
   //评论翻页
   const changePage = (page)=> {
     props.dispatch({
@@ -24,11 +24,13 @@ const Mewssage = (props)=> {
       if(!!err){
         return err
       }
+      const randomNum =  parseInt(Math.random()*avatarList.length)
       props.dispatch({
         type: 'message/submitMessage',
         payload: {
           nickName: values.nickName,
-          content: values.content
+          content: values.content,
+          avatar: avatarList[randomNum]
         }
       })
       resetFields()
@@ -55,9 +57,9 @@ const Mewssage = (props)=> {
         </div>
         <div className={styles.about}>
           <h1><Icon type="user" />关于我</h1>
-          {/*<p>95年双子男，前端开发菜鸟</p>
-          <p><a href="http://www.timeface.cn">时光流影</a>是我第一家公司，这里的小伙伴帮助我很多</p>*/}
-          <p></p>
+          <p>95年双子男，热爱前端</p>
+          <p>希望借此结交更多前辈好友</p>
+          <p>共同进步，沉淀自己</p>
         </div>
       </div>
       

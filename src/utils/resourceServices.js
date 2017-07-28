@@ -7,10 +7,3 @@ export function getResources(params) {
     body: JSON.stringify(params),
   });
 }
-/*获取资源标签*/
-export function getResourceTags(params) {
-  return request('/resources/getResourceTags.php', {
-    method: 'POST',
-    body: JSON.stringify(params),
-  });
-}

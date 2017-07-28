@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'dva'
 import styles from './style/resource.less'
 import { ResourceSide, ResourceMain } from '../../components'
+import { Spin } from 'antd'
 
 const Resource = (props)=> {
-  const { tagLists, resources } = props.resource
+  const { tagLists, resources, queryTag, isLoading } = props.resource
   const sideProps = {
     tagLists,
-    dispatch: props.dispatch
+    dispatch: props.dispatch,
+    queryTag
   }
   const mainProps = {
     resources,
@@ -16,7 +18,9 @@ const Resource = (props)=> {
   return(
     <div className={styles.resource}>
       <div className={styles.left}>
-        <ResourceMain {...mainProps}/>
+        <Spin spinning={isLoading} delay={0} >
+          <ResourceMain {...mainProps}/>
+        </Spin>  
       </div>
       <div className={styles.right}>
         <ResourceSide {...sideProps} />

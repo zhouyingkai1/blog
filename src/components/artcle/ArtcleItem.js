@@ -27,16 +27,22 @@ const ArtcleItem = ({ dispatch, artcleList,  }) => {
           <div className={styles.time}>{ computeTime(item.createTime) }发布</div>
           <div className={styles.infoBox}>
             <div className={styles.itemLeft}>
-              <div className={styles.mess} >
+              <div className={styles.mess} title='评论数'>
                 <Link to={{pathname: '/detail', query: { id: item.id}}}>
                   <Icon type="message" />
                   <span>{item.comment > 0 ? item.comment : ''}</span>
                 </Link>
               </div>
+              <div className={styles.mess} title='观看数'>
+                <Link to={{pathname: '/detail', query: { id: item.id}}}>
+                  <Icon type="eye-o"style={{fontSize: '15px'}}  />
+                  <span>{item.point}</span>
+                </Link>
+              </div>
             </div>
             <div className={styles.itemRight}>
               <div className={styles.tags}>
-                <Icon type="tags-o" />
+                <Icon  type="tags-o" />
                 <u key={index}>{item.tag}</u>
               </div>
             </div>

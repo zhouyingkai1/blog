@@ -49,11 +49,15 @@ class Home extends Component {
         <canvas id="canvas" className={styles.canvas}></canvas>
         <div className={styles.main}>
           <div className={styles.avatar}></div>
-          <h1 className={styles.name}>zyk</h1>
-          <p className={styles.desc}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat,
-             officia sunt ad esse  error laborum at soluta nesciunt consequatur nostrum officiis!</p>
+          {/*<h1 className={styles.name}>周莹凯 95年前端学习者</h1>*/}
+          <p className={styles.desc}>
+            星空浩瀚，而地球不过是其中渺小一颗，而人类相比于地球，又是如此之渺小
+          </p>
+          <p className={styles.desc}>
+            唯有不断学习，绽放自己，像星星一样闪烁
+          </p>
           <div className={styles.link}>
-            <a href='https://github.com/zhouyingkai1' target='_blank'>关于此站</a>
+            <Link to={{pathname: '/about'}}>关于此站</Link>
             <Link to={{pathname: '/artcle'}}>进入博客</Link>
           </div>
         </div>

@@ -30,7 +30,7 @@ const Mewssage = (props)=> {
         payload: {
           nickName: values.nickName,
           content: values.content,
-          avatar: avatarList[randomNum]
+          avatar: avatarList[randomNum]&&avatarList[randomNum].link
         }
       })
       resetFields()

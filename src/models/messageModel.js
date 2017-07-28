@@ -1,4 +1,5 @@
 import * as messageServices from '../services/messageServices'
+import { getAvatarLists } from '../services/commonServices'
 import { Message } from 'antd'
 export default{
   namespace: 'message',
@@ -9,13 +10,7 @@ export default{
       pageSize: 10
     },
     messageData: [],
-    avatarList: [
-      'http://ossweb-img.qq.com/images/lol/v1/banner/pic-inner-v20.jpg',
-      'http://img1.timeface.cn/album/avator/e9912620fd56e48fb37695145c9e82d7.jpg',
-      'http://img1.timeface.cn/avatar/c17bcaa3eda6ad86afa9bd089c54826d.jpg',
-      'http://img1.timeface.cn/uploads/avator/41750ee13848062e0fc54ecaab062e43.png',
-      'http://img1.timeface.cn/uploads/avator/default.png',
-    ],
+    avatarList: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -27,6 +22,9 @@ export default{
               page: 1,
               pageSize: 10 
             }
+          })
+          dispatch({ 
+            type: 'getAvatarLists',
           })
         }
       })
@@ -61,6 +59,17 @@ export default{
           payload: {
             page: 1,
             pageSize: 10
+          }
+        })
+      }
+    },
+    *getAvatarLists({ payload }, { call, put }) {
+      const result = yield call(getAvatarLists,{})
+      if(result.code === '000'){
+        yield put({
+          type: 'updateState',
+          payload: {
+            avatarList: result.data
           }
         })
       }

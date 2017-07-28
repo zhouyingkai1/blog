@@ -31,13 +31,14 @@ const ArtcleDetail = (props) => {
   const submitComment = () => {
     let commentInput = document.querySelector('#commentInput');
     const randomNum =  parseInt(Math.random()*avatarList.length)
+    console.log(randomNum,'randomNum')
     if (commentInput.value) {
       props.dispatch({
         type: 'detail/submitComment',
         payload: {
           message: commentInput.value,
           artcleId: artcleId,
-          avatar: avatarList[randomNum]
+          avatar: avatarList[randomNum]&&avatarList[randomNum].link
         }
       })
       commentInput.value = ''
@@ -127,6 +128,7 @@ const ArtcleDetail = (props) => {
               <div className={styles.aboutArtcle}>
                 <p>热门相关</p>
                 {
+                  aboutLists.length>0?
                   aboutLists.map((item, index) => {
                     return (
                       <div key={index} className={styles.aboutItem}>
@@ -134,7 +136,10 @@ const ArtcleDetail = (props) => {
                       </div>
                     )
                   })
+                  :
+                  <div className={styles.empty}>暂无</div>
                 }
+                
               </div>
             </div>
           </div>

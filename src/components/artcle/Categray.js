@@ -9,7 +9,7 @@ const Categray = ({ dispatch, categroy:categroyId, sideCategroy, tagName })=> {
       payload: {
         page: 1,
         pageSize: 10,
-        tag: tagName,
+        tagName: tagName,
         categroy: id
       }
     })

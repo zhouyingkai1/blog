@@ -8,7 +8,6 @@
 'use strict';
 
 export default function computeTime(time) { // 10位时间戳
-    console.log(time)
     var time = new Date(time);
     var timeString = new Date(time.getTime()+28800000).toISOString()    //"2017-05-31T00:42:03.000Z"
     var datePart = timeString.substring(0, 10).replace(/\-/g, "/");;

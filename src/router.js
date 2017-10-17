@@ -1,6 +1,6 @@
 import React from 'react';
 import { routerRedux } from 'dva/router'
-import { Router, browserHistory } from 'dva/router';
+import { Router, hashHistory } from 'dva/router';
 
 export default function ({ history, app }) {
   const routes = [
@@ -99,7 +99,7 @@ export default function ({ history, app }) {
     }
   ]
   //监听路由变化
-  browserHistory.listen(location => {
+  hashHistory.listen(location => {
     if(location.pathname === '/'){
       app._store.dispatch(routerRedux.replace('/artcle'))
     }

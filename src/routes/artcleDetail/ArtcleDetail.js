@@ -31,7 +31,6 @@ const ArtcleDetail = (props) => {
   const submitComment = () => {
     let commentInput = document.querySelector('#commentInput');
     const randomNum =  parseInt(Math.random()*avatarList.length)
-    console.log(randomNum,'randomNum')
     if (commentInput.value) {
       props.dispatch({
         type: 'detail/submitComment',

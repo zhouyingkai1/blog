@@ -3,14 +3,14 @@ import './index.html';
 import './index.css';
 import dva from 'dva'
 import createLoading from 'dva-loading'
-import { browserHistory } from 'dva/router'
+import { hashHistory } from 'dva/router'
 import { message } from 'antd';
 // 1. Initialize
 const app = dva({
   ...createLoading({
     effects: false,
   }),
-  history: browserHistory,
+  history: hashHistory,
   onError (error) {
     message.error(error.message)
   },

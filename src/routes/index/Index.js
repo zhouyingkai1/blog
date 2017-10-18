@@ -20,7 +20,7 @@ const Index = (props)=> {
 
 
   const { children } = props
-  if (['/home'].indexOf(location.pathname) > -1) {
+  if (/home/.test(location.hash)) {
     return <div>{ children }</div>
   }
   return(

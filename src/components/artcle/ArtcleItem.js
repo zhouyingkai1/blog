@@ -18,7 +18,7 @@ const ArtcleItem = ({ dispatch, artcleList,  }) => {
     }
     return (
       <div key={index} className={styles.item} >
-        <div className={styles.shortImg} style={{ backgroundImage: 'url(' + item.img + ') ' }}>
+        <div className={styles.shortImg} style={{ backgroundImage: 'url(' + item.shortImg + ') ' }}>
         <Link to={{pathname: '/detail', query: { id: item.id}}} style={{ display: 'block', position: 'relative', zIndex: '3', height: '100%' }}></Link>
         </div>
         <div className={styles.itemMain} id={'div' + index} >

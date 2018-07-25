@@ -41,7 +41,7 @@ function handleError(error) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  url  = /http:\\/.test(url) ? url : pathInterceptor.request(url)
+  url  = /https:\\/.test(url) ? url : pathInterceptor.request(url)
  return fetch(url, tokenInterceptor.request(options))
     .then(checkStatus)
     .then(!~'headHEAD'.indexOf(options.method)&&parseJSON)

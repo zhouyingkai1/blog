@@ -49,9 +49,9 @@ const ArtcleDetail = (props) => {
       // const thisUrl = 'timeface.cn/event'
       let url
       if (type == 0) {
-        url = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(thisUrl + '?title=' + artcleDetail.title) + '&pics=' + artcleDetail.img;
+        url = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(thisUrl + '?title=' + artcleDetail.title) + '&pics=' + artcleDetail.img;
       } else {
-        url = 'http://v.t.sina.com.cn/share/share.php?appkey=2889481671&title=' + encodeURIComponent(thisUrl + '?title=' + artcleDetail.title) + '&pic=' + artcleDetail.img
+        url = 'https://v.t.sina.com.cn/share/share.php?appkey=2889481671&title=' + encodeURIComponent(thisUrl + '?title=' + artcleDetail.title) + '&pic=' + artcleDetail.img
       }
       window.open(url)
     }
